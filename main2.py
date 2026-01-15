@@ -113,18 +113,40 @@ class OrdenService:
         producto.stoke -= cantidad
 
 
-    def mostrar_orden(self):
-        pass
+    def mostrar_orden(self,orden : schema_orden):
+        if not orden:
+            print("no orden creada.")
+
+        if not orden.list_product:
+            print("no hay una orde agregada")
+
+
+        print("\n====== ORDEN ======")
+        print(f"orden: {orden.id}")
+        print(f"fecha: {orden.fecha}") 
+        print("----------------------------")
+
+
+        for prod in orden.list_product:
+             print(
+            f"ID: {prod.id} | "
+            f"NOMBRE: {prod.name} | "
+            f"PRECIO: {prod.price} | "
+            f"CANTIDAD: {prod.stoke} | "
+            f"SUBTOTAL: {prod.price * prod.stoke}"
+        )
+             
+
+
+        print("-------------------")
+        print(f"TOTAL: {orden.total}")
+        print("===================\n")
+
+
+
         
         
-
-
         
-
-
-
-
-
 
 def main2():
   lista = Inventario()
@@ -185,6 +207,18 @@ def main2():
 
             order_server.agregar_orden(orden_actual,id_produ,cantidad_produt)
             print("se agrego la orden ")
+
+
+        case "5":
+            if not orden_actual:
+                print("no hay una orden")
+
+
+            order_server.mostrar_orden(orden_actual)
+
+        case "6":
+            break
+    
 
       
 
